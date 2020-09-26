@@ -2,6 +2,7 @@ class PostsController < ApplicationController
   before_action :set_post, only: %i[edit update destroy]
   def index
     @posts=Post.order(:id).includes(:user)
+    @liked_post_ids =current_user.likes.pluck(:post_id)
   end
 
   def new
